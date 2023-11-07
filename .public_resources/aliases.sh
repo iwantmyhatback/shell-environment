@@ -7,20 +7,11 @@ printf '%s\n' '[INFO] Loading public::aliases'
 ###############################################################################################
 
 ###-----------------------------------------------------------------------------------------###
-###--- ZSH CUSTOMIZATION -------------------------------------------------------------------###
-###-----------------------------------------------------------------------------------------###
-
-alias src='source ${HOME}/.zshrc'
-[ -x "$(command -v vim)" ] && alias eProfile='vim ${HOME}/.zshrc'
-[ -x "$(command -v code)" ] && alias eProfileVs='code ${HOME}/.zshrc'
-
-###-----------------------------------------------------------------------------------------###
 ###--- NAVIGATION --------------------------------------------------------------------------###
 ###-----------------------------------------------------------------------------------------###
 
 # Print Working Dir to Clipboard
 [ -x "$(command -v pbcopy)" ] && alias cpwd='pwd|tr -d "\n"|pbcopy'
-
 
 # Echo PATH
 alias path='echo -e ${PATH//:/\\n}'
@@ -30,11 +21,31 @@ alias ..='cd ..'
 # Up two levels
 alias ...='cd ../../'
 
-
 alias ls='ls -Fh'
 alias la='ls -FAh'
 alias ll='ls -Flh'
 alias lss='du -sh * | sort -h'
+
+
+###-----------------------------------------------------------------------------------------###
+###--- RANDOM ------------------------------------------------------------------------------###
+###-----------------------------------------------------------------------------------------###
+
+# Sudo Commands
+[ -x "$(command -v nmap)" ] && alias snmap='sudo nmap'
+[ -x "$(command -v nano)" ] && alias snano='sudo nano '
+[ -x "$(command -v vime)" ] && alias svim='sudo vim '
+[ -x "$(command -v htop)" ] && alias htop='sudo htop'
+
+# Get Public IP
+alias publicIP='curl http://ifconfig.me; echo'
+
+# Knock-off tree command if the tree utility isnt installed
+[ ! -x "$(command -v tree)" ] && alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+
+# Man Summaries
+[ -x "$(command -v tldr)" ] && alias sman="tldr"
+
 
 ###-----------------------------------------------------------------------------------------###
 ###--- GITHUB ------------------------------------------------------------------------------###
@@ -63,6 +74,7 @@ if command -v yt-dlp >/dev/null 2>&1; then
     [ -s "${HOME}/.scripts-supplemental/youtube-dl-cookie.txt" ] && alias videoGetterRestricted='yt-dlp --cookie ${HOME}/.scripts-supplemental/youtube-dl-cookie.txt -S "ext" -f bestvideo+bestaudio'
 fi
 
+
 ###-----------------------------------------------------------------------------------------###
 ###--- CLAM AV -----------------------------------------------------------------------------###
 ###-----------------------------------------------------------------------------------------###
@@ -82,24 +94,15 @@ fi
 # Java home executable
 [ -x "$(command -v /usr/libexec/java_home)" ] && alias java_home="/usr/libexec/java_home"
 
+
 ###-----------------------------------------------------------------------------------------###
-###--- RANDOM ------------------------------------------------------------------------------###
+###--- ZSH CUSTOMIZATION -------------------------------------------------------------------###
 ###-----------------------------------------------------------------------------------------###
 
-# Sudo Commands
-[ -x "$(command -v nmap)" ] && alias snmap='sudo nmap'
-[ -x "$(command -v nano)" ] && alias snano='sudo nano '
-[ -x "$(command -v vime)" ] && alias svim='sudo vim '
-[ -x "$(command -v htop)" ] && alias htop='sudo htop'
+alias src='source ${HOME}/.zshrc'
+[ -x "$(command -v vim)" ] && alias eProfile='vim ${HOME}/.zshrc'
+[ -x "$(command -v code)" ] && alias eProfileVs='code ${HOME}/.zshrc'
 
-# Get Public IP
-alias publicIP='curl http://ifconfig.me; echo'
-
-# Knock-off tree command if the tree utility isnt installed
-[ ! -x "$(command -v tree)" ] && alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
-
-# Man Summaries
-[ -x "$(command -v tldr)" ] && alias sman="tldr"
 
 ###-----------------------------------------------------------------------------------------###
 ###--- <NEW SECTION> -----------------------------------------------------------------------###
