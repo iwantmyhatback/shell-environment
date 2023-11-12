@@ -100,10 +100,12 @@ if [ -n "$DRY_RUN_ACTIVE" ]; then
     printf "[INFO] Dry Run Active"
 		printf "To .bashrc : %s\n" "${SOURCE_SCRIPT}"
 		printf "To .zshrc : %s\n\n" "${SOURCE_SCRIPT}"
+		printf "To .profile : %s\n\n" "${SOURCE_SCRIPT}"
 		printf "mv \"%s\" \"%s/.shell-environment\"\n" "${SCRIPT_DIR}" "${HOME}"
 else
 		printf "%s\n\n" "${SOURCE_SCRIPT}" > "${HOME}/.bashrc"
 		printf "%s\n\n" "${SOURCE_SCRIPT}" > "${HOME}/.zshrc"
+		printf "%s\n\n" "${SOURCE_SCRIPT}" > "${HOME}/.profile"
 		mv "${SCRIPT_DIR}" "${ENVIRONMENT_LOCATION}"
 fi
 

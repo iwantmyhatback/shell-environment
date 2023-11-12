@@ -96,12 +96,30 @@ fi
 
 
 ###-----------------------------------------------------------------------------------------###
-###--- ZSH CUSTOMIZATION -------------------------------------------------------------------###
+###--- SHELL CUSTOMIZATION -----------------------------------------------------------------###
 ###-----------------------------------------------------------------------------------------###
 
-alias src='source ${HOME}/.zshrc'
-[ -x "$(command -v vim)" ] && alias eProfile='vim ${HOME}/.zshrc'
-[ -x "$(command -v code)" ] && alias eProfileVs='code ${HOME}/.zshrc'
+case "${SHELL}" in
+	/bin/bash)
+		alias src='source ${HOME}/.bashrc'
+		[ -x "$(command -v vim)" ] && alias eProfile='vim ${HOME}/.bashrc'
+		[ -x "$(command -v code)" ] && alias eProfileVs='code ${HOME}/.bashrc'
+		;;
+	/bin/zsh)
+		alias src='source ${HOME}/.zshrc'
+		[ -x "$(command -v vim)" ] && alias eProfile='vim ${HOME}/.zshrc'
+		[ -x "$(command -v code)" ] && alias eProfileVs='code ${HOME}/.zshrc'
+    	;;
+	/bin/sh)
+    	alias src='source ${HOME}/.profile'
+		[ -x "$(command -v vim)" ] && alias eProfile='vim ${HOME}/.profile'
+		[ -x "$(command -v code)" ] && alias eProfileVs='code ${HOME}/.profile'
+    	;;
+	*)
+		printf '[ERROR] Unknown shell type!\n'
+		exit 1
+    ;;
+esac
 
 
 ###-----------------------------------------------------------------------------------------###
