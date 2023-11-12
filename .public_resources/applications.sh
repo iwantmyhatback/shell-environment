@@ -20,7 +20,7 @@ export NVM_DIR="$HOME/.nvm"
 ###-----------------------------------------------------------------------------------------###
 
 if command -v brew > /dev/null 2>&1; then
-	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+	FPATH="$(brew --prefix)/share/zsh-completions:$FPATH"
 	autoload -Uz compinit
 	compinit
 fi
@@ -32,7 +32,7 @@ fi
 
 if command -v brew >/dev/null 2>&1; then
 	HOMEBREW_PREFIX=/usr/local
-	[ -s "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+	[ -s "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && . "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
 
@@ -50,7 +50,7 @@ unset JDK_HOME
 jenv rehash 2>/dev/null
 jenv refresh-plugins
 jenv() {
-	type typeset &> /dev/null && typeset command
+	type typeset > /dev/null 2>&1 && typeset command
 	command="$1"
 	if [ "$#" -gt 0 ]; then
 		shift

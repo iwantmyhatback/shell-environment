@@ -88,7 +88,7 @@ fi
 ###-----------------------------------------------------------------------------------------###
 
 # Restart Audio Service on Macbook
-[ "$(uname)" = "Darwin" ] && alias restartSound="sudo kill -9 $(ps ax|grep 'coreaudio[a-z]' | awk '{print $1}')"
+[ "$(uname)" = "Darwin" ] && alias restartSound='sudo kill -9 $(pgrep -f "coreaudio[a-z]" | awk "{print $1}")'
 # Lock Computer on Macbook
 [ -x "$(command -v osascript)" ] && alias afk='osascript -e "tell application "System Events" to start current screen saver"'
 # Java home executable
