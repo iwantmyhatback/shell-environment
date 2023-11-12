@@ -3,6 +3,26 @@
 ###############################################################################################
 
 ###-----------------------------------------------------------------------------------------###
+### LOAD RESOURCES -------------------------------------------------------------------------###
+###-----------------------------------------------------------------------------------------###
+
+. "${HOME}/.shell-environment/.private_resources/opts.sh"
+. "${HOME}/.shell-environment/.public_resources/opts.sh"
+
+. "${HOME}/.shell-environment/.private_resources/variables.sh"
+. "${HOME}/.shell-environment/.public_resources/variables.sh"
+
+. "${HOME}/.shell-environment/.private_resources/aliases.sh"
+. "${HOME}/.shell-environment/.public_resources/aliases.sh"
+
+. "${HOME}/.shell-environment/.private_resources/functions.sh"
+. "${HOME}/.shell-environment/.public_resources/functions.sh"
+
+. "${HOME}/.shell-environment/.private_resources/applications.sh"
+. "${HOME}/.shell-environment/.public_resources/applications.sh"
+
+
+###-----------------------------------------------------------------------------------------###
 ### PATH -----------------------------------------------------------------------------------###
 ###-----------------------------------------------------------------------------------------###
 
@@ -25,26 +45,3 @@ export PATH=${PATH}
 ###-----------------------------------------------------------------------------------------###
 
 export PS1="%B[\$(date '+%I:%M')]%F{green}%n|%3~: %b%f"
-
-
-###-----------------------------------------------------------------------------------------###
-### LOAD RESOURCES -------------------------------------------------------------------------###
-###-----------------------------------------------------------------------------------------###
-
-. .private_resources/opts.sh
-. .public_resources/opts.sh
-
-. .private_resources/variables.sh
-. .public_resources/variables.sh
-
-. .private_resources/aliases.sh
-. .public_resources/aliases.sh
-
-. .private_resources/functions.sh
-. .public_resources/functions.sh
-
-. .private_resources/applications.sh
-. .public_resources/applications.sh
-
-
-
