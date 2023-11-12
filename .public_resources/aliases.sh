@@ -52,15 +52,15 @@ alias publicIP='curl http://ifconfig.me; echo'
 ###-----------------------------------------------------------------------------------------###
 
 if command -v git >/dev/null 2>&1; then
-  # Add all and commit
-  alias gac='git add . && git commit -m '
-  # Add all, Commit, Push to master
-  gitQuickMasterPush() {
-    git add .
-    git commit -m "Quick update"
-    git push origin master
-  }
-  alias gq='gitQuickMasterPush'
+	# Add all and commit
+	alias gac='git add . && git commit -m '
+	# Add all, Commit, Push to master
+	gitQuickMasterPush() {
+		git add .
+		git commit -m "Quick update"
+		git push origin master
+	}
+	alias gq='gitQuickMasterPush'
 fi
 
 
@@ -69,9 +69,9 @@ fi
 ###-----------------------------------------------------------------------------------------###
 
 if command -v yt-dlp >/dev/null 2>&1; then
-    alias songGetter='yt-dlp -x --audio-format mp3'
-    alias videoGetter='yt-dlp -S "ext" -f bestvideo+bestaudio'
-    [ -s "${HOME}/.scripts-supplemental/youtube-dl-cookie.txt" ] && alias videoGetterRestricted='yt-dlp --cookie ${HOME}/.scripts-supplemental/youtube-dl-cookie.txt -S "ext" -f bestvideo+bestaudio'
+	alias songGetter='yt-dlp -x --audio-format mp3'
+	alias videoGetter='yt-dlp -S "ext" -f bestvideo+bestaudio'
+	[ -s "${HOME}/.scripts-supplemental/youtube-dl-cookie.txt" ] && alias videoGetterRestricted='yt-dlp --cookie ${HOME}/.scripts-supplemental/youtube-dl-cookie.txt -S "ext" -f bestvideo+bestaudio'
 fi
 
 

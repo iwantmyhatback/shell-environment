@@ -92,18 +92,16 @@ add_path_item() {
 ###-----------------------------------------------------------------------------------------###
 
 remote_copy(){
-        # -r recursive
-        # -l links Copy symlinks as symlinks
-        # -c Update: Use checksums to compare file differences and only write if there is a difference..
-        # -t Preserve timestamps (helps with update)
-        # -h Use human readable numbers (for file sizes etc, used for progress)
-        # -p Preserve permissions (such as wrx).  Doesn't conflict with different users/groups.
-        # -E copy extended attributes.  (this is important for .dmg files that have the com.apple.macl bit)
-        # -—progress use a progress meter
-        # -—exclude=<BRE PATTERN>
-        rsync -rltpchE \
-                --progress \
-                "${1}" "${2}"
+	# -r recursive
+	# -l links Copy symlinks as symlinks
+	# -c Update: Use checksums to compare file differences and only write if there is a difference..
+	# -t Preserve timestamps (helps with update)
+	# -h Use human readable numbers (for file sizes etc, used for progress)
+	# -p Preserve permissions (such as wrx).  Doesn't conflict with different users/groups.
+	# -E copy extended attributes.  (this is important for .dmg files that have the com.apple.macl bit)
+	# -—progress use a progress meter
+	# -—exclude=<BRE PATTERN>
+	rsync -rltpchE "${1}" "${2}"
 }
 
 
@@ -112,12 +110,12 @@ remote_copy(){
 ###-----------------------------------------------------------------------------------------###
 
 set_java(){
-  if [ -z ${1+x} ];then
-    echo "[ERROR] Pass a valid version (ie: 11 or 17)"
-    return 1
-  fi
-  JAVA_HOME="$(/usr/libexec/java_home -v ${1})"
-  export JAVA_HOME
+	if [ -z ${1+x} ];then
+		echo "[ERROR] Pass a valid version (ie: 11 or 17)"
+		return 1
+	fi
+	JAVA_HOME="$(/usr/libexec/java_home -v ${1})"
+	export JAVA_HOME
 }
 
 
@@ -145,12 +143,12 @@ file_exists() {
 
 		object=${1:?"File path must be specified"}
 
-    if [ -f "$object" ] || [ -L "$object" ] || [ -d "$object" ]; then
-        [ "${verbose}" = "true" ] && printf "Found\n"
-				return 0
-    fi
+		if [ -f "$object" ] || [ -L "$object" ] || [ -d "$object" ]; then
+			[ "${verbose}" = "true" ] && printf "Found\n"
+			return 0
+		fi
 		[ "${verbose}" = "true" ] && printf "Not Found\n"
-    return 1
+		return 1
 	)
 }
 

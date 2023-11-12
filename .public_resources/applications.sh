@@ -11,18 +11,18 @@ printf '%s\n' '[INFO] Loading public::applications'
 ###-----------------------------------------------------------------------------------------###
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+[ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"
+[ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion"
 
 
 ###-----------------------------------------------------------------------------------------###
 ### --- ZSH-COMPLETIONS --------------------------------------------------------------------###
 ###-----------------------------------------------------------------------------------------###
 
-if command -v brew >/dev/null 2>&1; then
-		FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-		autoload -Uz compinit
-		compinit
+if command -v brew > /dev/null 2>&1; then
+	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+	autoload -Uz compinit
+	compinit
 fi
 
 
@@ -31,8 +31,8 @@ fi
 ###-----------------------------------------------------------------------------------------###
 
 if command -v brew >/dev/null 2>&1; then
-    HOMEBREW_PREFIX=/usr/local
-    [ -s "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+	HOMEBREW_PREFIX=/usr/local
+	[ -s "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
 

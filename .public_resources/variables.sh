@@ -18,11 +18,11 @@ export CLICOLOR=1 # Activate terminal colors
 ###-----------------------------------------------------------------------------------------###
 
 if command -v brew >/dev/null 2>&1; then
-    export HOMEBREW_PREFIX=/usr/local
-    export HOMEBREW_AUTOREMOVE=true
-    export HOMEBREW_CLEANUP_MAX_AGE_DAYS=7
-    export HOMEBREW_COLOR=true
-    export HOMEBREW_DISPLAY_INSTALL_TIMES=true
+	export HOMEBREW_PREFIX=/usr/local
+	export HOMEBREW_AUTOREMOVE=true
+	export HOMEBREW_CLEANUP_MAX_AGE_DAYS=7
+	export HOMEBREW_COLOR=true
+	export HOMEBREW_DISPLAY_INSTALL_TIMES=true
 fi
 
 
