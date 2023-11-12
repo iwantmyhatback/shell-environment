@@ -132,7 +132,7 @@ file_exists() {
 					return 1
 					;;
 				-v)
-					verbose=true
+					VERBOSE=true
 					shift
 					;;
 				*)
@@ -141,13 +141,13 @@ file_exists() {
 			esac
 		done
 
-		object=${1:?"File path must be specified"}
+		OBJECT=${1:?"File path must be specified"}
 
-		if [ -f "$object" ] || [ -L "$object" ] || [ -d "$object" ]; then
-			[ "${verbose}" = "true" ] && printf "Found\n"
+		if [ -f "${OBJECT}" ] || [ -L "${OBJECT}" ] || [ -d "${OBJECT}" ]; then
+			[ "${VERBOSE}" = "true" ] && printf "Found\n"
 			return 0
 		fi
-		[ "${verbose}" = "true" ] && printf "Not Found\n"
+		[ "${VERBOSE}" = "true" ] && printf "Not Found\n"
 		return 1
 	)
 }
