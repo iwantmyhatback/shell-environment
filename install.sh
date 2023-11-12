@@ -44,6 +44,11 @@ done
 ENVIRONMENT_LOCATION="${HOME}/.shell-environment"
 ENVIRONMENT_BACKUP_LOCATION="${ENVIRONMENT_LOCATION}-backup"
 
+if [ -e "${ENVIRONMENT_BACKUP_LOCATION}" ] && [ -z "${FORCE_ACTIVE+x}" ];then
+	printf '%s\n' "[ERROR] The environment may have already been installed ... ${ENVIRONMENT_BACKUP_LOCATION} already exists"
+	exit 1
+fi
+
 ZSH_FILES=".zshrc .zprofile .zlogin .zsh_aliases .zsh_functions .zshenv"
 BASH_FILES=".bashrc .bash_profile .bash_login .bash_aliases"
 SH_FILES=".profile"
