@@ -6,6 +6,11 @@
 ### LOAD RESOURCES -------------------------------------------------------------------------###
 ###-----------------------------------------------------------------------------------------###
 
+git -C "${HOME}/.shell-environment" pull
+if [ ${?} -eq 0 ];then
+	printf '\033[1A'; printf '\033[K'
+fi
+
 . "${HOME}/.shell-environment/.private_resources/opts.sh"
 . "${HOME}/.shell-environment/.public_resources/opts.sh"
 
