@@ -22,9 +22,11 @@ export NVM_DIR="$HOME/.nvm"
 ###-----------------------------------------------------------------------------------------###
 
 if command -v brew > /dev/null 2>&1; then
-	FPATH="$(brew --prefix)/share/zsh-completions:$FPATH"
-	autoload -Uz compinit
-	compinit
+	if [ "${SHELL}" = '/bin/zsh' ];then
+		FPATH="$(brew --prefix)/share/zsh-completions:$FPATH"
+		autoload -Uz compinit
+		compinit
+	fi
 fi
 
 
@@ -33,9 +35,11 @@ fi
 ###-----------------------------------------------------------------------------------------###
 
 if command -v brew >/dev/null 2>&1; then
-	HOMEBREW_PREFIX=/usr/local
-	# shellcheck disable=SC1091
-	[ -s "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && . "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+	if [ "${SHELL}" = '/bin/zsh' ];then
+		HOMEBREW_PREFIX=/usr/local
+		# shellcheck disable=SC1091
+		[ -s "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && . "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+	fi
 fi
 
 
