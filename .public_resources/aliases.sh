@@ -111,11 +111,6 @@ case "${SHELL}" in
 		[ -x "$(command -v vim)" ] && alias eProfile='vim ${HOME}/.zshrc'
 		[ -x "$(command -v code)" ] && alias eProfileVs='code ${HOME}/.zshrc'
     	;;
-	/bin/sh)
-    	alias src='source ${HOME}/.profile'
-		[ -x "$(command -v vim)" ] && alias eProfile='vim ${HOME}/.profile'
-		[ -x "$(command -v code)" ] && alias eProfileVs='code ${HOME}/.profile'
-    	;;
 	*)
 		printf '[ERROR] Unknown shell type!\n'
 		exit 1
