@@ -89,7 +89,7 @@ fi
 
 # Restart Audio Service on Macbook
 # shellcheck disable=SC2142
-[ "$(uname)" = "Darwin" ] && alias restartSound='sudo kill -9 $(pgrep -f "coreaudio[a-z]" | awk "{print $1}")'
+is_mac && alias restartSound='sudo kill -9 $(pgrep -f "coreaudio[a-z]" | awk "{print $1}")'
 # Lock Computer on Macbook
 [ -x "$(command -v osascript)" ] && alias afk='osascript -e "tell application "System Events" to start current screen saver"'
 # Java home executable
@@ -100,23 +100,22 @@ fi
 ###--- SHELL CUSTOMIZATION -----------------------------------------------------------------###
 ###-----------------------------------------------------------------------------------------###
 
-case "${SHELL}" in
-	/bin/bash)
-		alias src='source ${HOME}/.bashrc'
-		[ -x "$(command -v vim)" ] && alias eProfile='vim ${HOME}/.bashrc'
-		[ -x "$(command -v code)" ] && alias eProfileVs='code ${HOME}/.bashrc'
-		;;
-	/bin/zsh)
-		alias src='source ${HOME}/.zshrc'
-		[ -x "$(command -v vim)" ] && alias eProfile='vim ${HOME}/.zshrc'
-		[ -x "$(command -v code)" ] && alias eProfileVs='code ${HOME}/.zshrc'
-    	;;
-	*)
-		printf '[ERROR] Unknown shell type!\n'
-		exit 1
-    ;;
-esac
-
+if is_bash;then
+	alias src='source ${HOME}/.bashrc'
+	[ -x "$(command -v vim)" ] && alias eProfile='vim ${HOME}/.bashrc'
+	[ -x "$(command -v code)" ] && alias eProfileVs='code ${HOME}/.bashrc'
+elif is_zsh;then
+	alias src='source ${HOME}/.zshrc'
+	[ -x "$(command -v vim)" ] && alias eProfile='vim ${HOME}/.zshrc'
+	[ -x "$(command -v code)" ] && alias eProfileVs='code ${HOME}/.zshrc'
+elif is_sh;then
+	alias src='source ${HOME}/.profile'
+	[ -x "$(command -v vim)" ] && alias eProfile='vim ${HOME}/.profile'
+	[ -x "$(command -v code)" ] && alias eProfileVs='code ${HOME}/.profile'
+else
+	printf '[ERROR] Unknown shell type!\n'
+	exit 1
+fi
 
 ###-----------------------------------------------------------------------------------------###
 ###--- <NEW SECTION> -----------------------------------------------------------------------###
