@@ -111,7 +111,7 @@ else
 		printf "%s\n\n" "${SOURCE_SCRIPT}" > "${HOME}/.bashrc"
 		printf "%s\n\n" "${SOURCE_SCRIPT}" > "${HOME}/.zshrc"
 		printf "%s\n\n" "${SOURCE_SCRIPT}" > "${HOME}/.profile"
-		mv "${SCRIPT_DIR}" "${ENVIRONMENT_LOCATION}"
+		mv "${SCRIPT_DIR}" "${HOME}/"
 fi
 
 
