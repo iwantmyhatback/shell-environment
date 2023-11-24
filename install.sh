@@ -87,7 +87,7 @@ fi
 
 SCRIPT_LOCATION="$(${PATH_CHECK} ${0})"
 SCRIPT_DIR="$(dirname ${SCRIPT_LOCATION})"
-GIT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
+GIT_ROOT="$(git -C ${SCRIPT_DIR} rev-parse --show-toplevel 2>/dev/null)"
 
 $QUIET_ECHO "Script location: ${SCRIPT_LOCATION}"
 $QUIET_ECHO "Script directory: ${SCRIPT_DIR}"
