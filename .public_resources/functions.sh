@@ -216,6 +216,7 @@ unzip_all() {
 		SOURCE_DIR="${1}"
 	else
 		printf '\n%s\n' "${USAGE}"
+		exit 1
 	fi
 
 	if [ -n "$2" ]; then
