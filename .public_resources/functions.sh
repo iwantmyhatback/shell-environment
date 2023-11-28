@@ -210,12 +210,16 @@ is_sh(){
 ###-----------------------------------------------------------------------------------------###
 
 unzip_all() {
-	USAGE="Usage: unzip_all SOURCE_DIR DEST_DIR"
+	# Leave this alone for the output formatting
+	USAGE="Usage: unzip_all SOURCE_DIR [DEST_DIR]
+SOURCE_DIR	| REQUIRED |  Location to look for ZIP files
+DEST_DIR	| OPTIONAL |  Location to output extracted files.
+			      If ommited output will go to \"SOURCE_DIR-unpacked\" in current working directory"
 
 	if [ -d "$1" ]; then
 		SOURCE_DIR="${1}"
 	else
-		printf '\n%s\n' "${USAGE}"
+		printf '%s\n' "${USAGE}"
 		return 1
 	fi
 
