@@ -229,11 +229,11 @@ unzip_all() {
 	printf '[SOURCE]: %s\n' "${SOURCE_DIR}"
 	printf '[DEST]: %s\n\n' "${DEST_DIR}"
 
-	for file in "${SOURCE_DIR}"/*.zip; do
+	for FILE in "${SOURCE_DIR}"/*.zip; do
 		(
-			printf '[UNPACK START] %s\n' "${file}"
-			unzip -qj "${file}" -d "${DEST_DIR}"
-			printf '[UNPACK FINISH] %s\n' "${file}"
+			printf '[UNPACK START] %s\n' "${FILE}"
+			unzip -qj "${FILE}" -d "${DEST_DIR}"
+			printf '[UNPACK FINISH] %s\n' "${FILE}"
 		) &
 	done
 
