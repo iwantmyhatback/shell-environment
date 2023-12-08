@@ -11,11 +11,8 @@ printf '%s\n' '[INFO] Loading public::applications'
 ###-----------------------------------------------------------------------------------------###
 
 export NVM_DIR="$HOME/.nvm"
-# shellcheck disable=SC1091
-[ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"
-# shellcheck disable=SC1091
-[ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion"
-
+[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 ###-----------------------------------------------------------------------------------------###
 ### --- ZSH-COMPLETIONS --------------------------------------------------------------------###
@@ -53,7 +50,7 @@ export JENV_LOADED=1
 unset JAVA_HOME
 unset JDK_HOME
 # shellcheck disable=SC1091
-. "/opt/homebrew/Cellar/jenv/0.5.6/libexec/libexec/../completions/jenv.zsh"
+. "$(brew --prefix)/Cellar/jenv/0.5.6/libexec/libexec/../completions/jenv.zsh"
 # shellcheck disable=SC2218
 jenv rehash 2>/dev/null
 # shellcheck disable=SC2218
