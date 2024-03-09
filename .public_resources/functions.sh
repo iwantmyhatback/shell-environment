@@ -169,6 +169,49 @@ DEST_DIR	| OPTIONAL |  Location to output extracted files.
 }
 
 ###-----------------------------------------------------------------------------------------###
+###--- AWAKE (INSOMNIAC) -------------------------------------------------------------------###
+###-----------------------------------------------------------------------------------------###
+
+awake(){
+ 
+	if command -v caffeinate > /dev/null 2>&1; then 
+		printf '[ERROR] no caffeinate available on this system\n'; 
+		exit 1
+	fi
+
+	HELP="Usage: awake [on|off]"
+	ERR="[INVALID ARG]: Must pass exactly 1 arg [on|off]"
+
+	if [ ${#} -ne 1 ] || { [ "${1}" != "on" ] && [ "${1}" != "off" ]; };then
+			printf "%s\n\t%s\n" "${HELP}" "${ERR}"
+			exit 1
+	fi
+
+	if [ "${1}" = "on" ] && [ -z "$(pgrep caffeinate)" ];then
+			printf "(-‿-)\r"
+			sleep .5
+			printf "(ಠ_ಠ)\r"
+			sleep .3
+			nohup -- /usr/bin/caffeinate -disu > /dev/null 2>&1 &
+			exit 0
+
+	fi
+
+	if [ "${1}" = "off" ] && [ -n "$(pgrep caffeinate)" ];then
+			printf "(ಠ_ಠ)\r"
+			sleep .5
+			printf "(-‿-)\r"
+			sleep .3
+			kill $(pgrep caffeinate)
+			exit 0
+	fi
+}
+
+
+
+
+
+###-----------------------------------------------------------------------------------------###
 ###--- <NEW SECTION> -----------------------------------------------------------------------###
 ###-----------------------------------------------------------------------------------------###
 
