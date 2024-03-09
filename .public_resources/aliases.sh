@@ -11,7 +11,7 @@ printf '%s\n' '[INFO] Loading public::aliases'
 ###-----------------------------------------------------------------------------------------###
 
 # Print Working Dir to Clipboard
-[ -x "$(command -v pbcopy)" ] && alias cpwd='pwd|tr -d "\n"|pbcopy'
+command -v pbcopy > /dev/null 2>&1 && alias cpwd='pwd|tr -d "\n"|pbcopy'
 
 # Echo PATH
 alias path='echo -e ${PATH//:/\\n}'
@@ -32,19 +32,16 @@ alias lss='du -sh * | sort -h'
 ###-----------------------------------------------------------------------------------------###
 
 # Sudo Commands
-[ -x "$(command -v nmap)" ] && alias snmap='sudo nmap'
-[ -x "$(command -v nano)" ] && alias snano='sudo nano '
-[ -x "$(command -v vime)" ] && alias svim='sudo vim '
-[ -x "$(command -v htop)" ] && alias htop='sudo htop'
+command -v nmap > /dev/null 2>&1 && alias snmap='sudo nmap'
+command -v nano > /dev/null 2>&1 && alias snano='sudo nano '
+command -v vim > /dev/null 2>&1 && alias svim='sudo vim '
+command -v htop > /dev/null 2>&1 && alias shtop='sudo htop'
 
 # Get Public IP
-alias publicIP='curl http://ifconfig.me; echo'
+alias publicIP="printf '%s\n' \$(curl --silent http://ifconfig.me)"
 
 # Knock-off tree command if the tree utility isnt installed
-[ ! -x "$(command -v tree)" ] && alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
-
-# Man Summaries
-[ -x "$(command -v tldr)" ] && alias sman="tldr"
+command -v tree > /dev/null 2>&1 || alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 
 
 ###-----------------------------------------------------------------------------------------###
@@ -79,8 +76,8 @@ fi
 ###--- CLAM AV -----------------------------------------------------------------------------###
 ###-----------------------------------------------------------------------------------------###
 
-[ -x "$(command -v freshclam)" ] && alias virusUpdate="freshclam -v"
-[ -x "$(command -v clamscan)" ] && alias virusScan="clamscan --recursive=yes --bell -i "
+command -v freshclam >/dev/null 2>&1 && alias virusUpdate="freshclam -v"
+command -v clamscan >/dev/null 2>&1 && alias virusScan="clamscan --recursive=yes --bell -i "
 
 
 ###-----------------------------------------------------------------------------------------###
@@ -91,9 +88,9 @@ fi
 # shellcheck disable=SC2142
 is_mac && alias restartSound='sudo kill -9 $(pgrep -f "coreaudio[a-z]" | awk "{print $1}")'
 # Lock Computer on Macbook
-[ -x "$(command -v osascript)" ] && alias afk='osascript -e "tell application "System Events" to start current screen saver"'
+command -v osascript >/dev/null 2>&1 && alias afk='osascript -e "tell application "System Events" to start current screen saver"'
 # Java home executable
-[ -x "$(command -v /usr/libexec/java_home)" ] && alias java_home="/usr/libexec/java_home"
+command -v /usr/libexec/java_home >/dev/null 2>&1 && alias java_home="/usr/libexec/java_home"
 
 
 ###-----------------------------------------------------------------------------------------###
@@ -102,16 +99,16 @@ is_mac && alias restartSound='sudo kill -9 $(pgrep -f "coreaudio[a-z]" | awk "{p
 
 if is_bash;then
 	alias src='source ${HOME}/.bashrc'
-	[ -x "$(command -v vim)" ] && alias eProfile='vim ${HOME}/.bashrc'
-	[ -x "$(command -v code)" ] && alias eProfileVs='code ${HOME}/.bashrc'
+	command -v vim >/dev/null 2>&1 && alias eProfile='vim ${HOME}/.bashrc'
+	command -v code >/dev/null 2>&1 && alias eProfileVs='code ${HOME}/.bashrc'
 elif is_zsh;then
 	alias src='source ${HOME}/.zshrc'
-	[ -x "$(command -v vim)" ] && alias eProfile='vim ${HOME}/.zshrc'
-	[ -x "$(command -v code)" ] && alias eProfileVs='code ${HOME}/.zshrc'
+	command -v vim >/dev/null 2>&1 && alias eProfile='vim ${HOME}/.zshrc'
+	command -v code >/dev/null 2>&1 && alias eProfileVs='code ${HOME}/.zshrc'
 elif is_sh;then
 	alias src='source ${HOME}/.profile'
-	[ -x "$(command -v vim)" ] && alias eProfile='vim ${HOME}/.profile'
-	[ -x "$(command -v code)" ] && alias eProfileVs='code ${HOME}/.profile'
+	command -v vim >/dev/null 2>&1 && alias eProfile='vim ${HOME}/.profile'
+	command -v code >/dev/null 2>&1 && alias eProfileVs='code ${HOME}/.profile'
 else
 	printf '[ERROR] Unknown shell type!\n'
 	exit 1
