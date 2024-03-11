@@ -58,17 +58,17 @@ jenv refresh-plugins
 jenv() {
 	# shellcheck disable=SC3044
 	type typeset > /dev/null 2>&1 && typeset command
-	command="${1}"
+	input="${1}"
 	if [ "$#" -gt 0 ]; then
 		shift
 	fi
 
-	case "${command}" in
+	case "${input}" in
 	enable-plugin|rehash|shell|shell-options)
 		# shellcheck disable=SC2046
-		eval $(jenv "sh-${command}" "$@");;
+		eval $(jenv "sh-${input}" "$@");;
 	*)
-		command jenv "${command}" "$@";;
+		command jenv "${input}" "$@";;
 	esac
 }
 

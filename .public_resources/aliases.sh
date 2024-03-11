@@ -41,7 +41,7 @@ command -v htop > /dev/null 2>&1 && alias shtop='sudo htop'
 alias publicIP="printf '%s\n' \$(curl --silent http://ifconfig.me)"
 
 # Knock-off tree command if the tree utility isnt installed
-command -v tree > /dev/null 2>&1 || alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+! command -v tree > /dev/null 2>&1 && alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 
 
 ###-----------------------------------------------------------------------------------------###

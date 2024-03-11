@@ -11,7 +11,9 @@ printf '%s\n' '[INFO] Loading public::opts'
 ###-----------------------------------------------------------------------------------------###
 
 if is_bash;then
+	# shellcheck disable=SC3044
 	shopt -s histappend; HISTCONTROL=erasedups # Causes all previous lines matching the current line to be removed from the history list before that line is saved
+	# shellcheck disable=SC3044
 	shopt -s histappend; HISTCONTROL=ignorespace # Lines which begin with a space character are not saved in the history list
 	# shopt -s histappend; HISTCONTROL=ignoredups # Causes lines which match the previous history entry to not be saved
 	# shopt -s histappend; HISTCONTROL=ignoreboth # Is shorthand for ‘ignorespace’ and ‘ignoredups’
