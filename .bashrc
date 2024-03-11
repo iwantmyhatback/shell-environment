@@ -119,20 +119,20 @@ if [ ${?} -eq 0 ];then
 	printf '\033[1A'; printf '\033[K'
 fi
 
-. "${HOME}/.shell-environment/.private_resources/functions.sh"
-. "${HOME}/.shell-environment/.public_resources/functions.sh"
+. "${HOME}/.shell-environment/private_resources/functions.sh"
+. "${HOME}/.shell-environment/public_resources/functions.sh"
 
-. "${HOME}/.shell-environment/.private_resources/opts.sh"
-. "${HOME}/.shell-environment/.public_resources/opts.sh"
+. "${HOME}/.shell-environment/private_resources/opts.sh"
+. "${HOME}/.shell-environment/public_resources/opts.sh"
 
-. "${HOME}/.shell-environment/.private_resources/variables.sh"
-. "${HOME}/.shell-environment/.public_resources/variables.sh"
+. "${HOME}/.shell-environment/private_resources/variables.sh"
+. "${HOME}/.shell-environment/public_resources/variables.sh"
 
-. "${HOME}/.shell-environment/.private_resources/aliases.sh"
-. "${HOME}/.shell-environment/.public_resources/aliases.sh"
+. "${HOME}/.shell-environment/private_resources/aliases.sh"
+. "${HOME}/.shell-environment/public_resources/aliases.sh"
 
-. "${HOME}/.shell-environment/.private_resources/applications.sh"
-. "${HOME}/.shell-environment/.public_resources/applications.sh"
+. "${HOME}/.shell-environment/private_resources/applications.sh"
+. "${HOME}/.shell-environment/public_resources/applications.sh"
 
 
 
