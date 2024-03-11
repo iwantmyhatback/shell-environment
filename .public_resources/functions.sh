@@ -174,9 +174,9 @@ DEST_DIR	| OPTIONAL |  Location to output extracted files.
 
 awake(){
  
-	if command -v caffeinate > /dev/null 2>&1; then 
+	if ! command -v caffeinate > /dev/null 2>&1; then 
 		printf '[ERROR] no caffeinate available on this system\n'; 
-		exit 1
+		return 1
 	fi
 
 	HELP="Usage: awake [on|off]"
@@ -184,7 +184,7 @@ awake(){
 
 	if [ ${#} -ne 1 ] || { [ "${1}" != "on" ] && [ "${1}" != "off" ]; };then
 			printf "%s\n\t%s\n" "${HELP}" "${ERR}"
-			exit 1
+			return 1
 	fi
 
 	if [ "${1}" = "on" ] && [ -z "$(pgrep caffeinate)" ];then
@@ -192,8 +192,9 @@ awake(){
 			sleep .5
 			printf "(ಠ_ಠ)\r"
 			sleep .3
-			nohup -- /usr/bin/caffeinate -disu > /dev/null 2>&1 &
-			exit 0
+			# shellcheck disable=SC2091
+			$(nohup -- /usr/bin/caffeinate -disu > /dev/null 2>&1 &)
+			return 0
 
 	fi
 
@@ -203,7 +204,7 @@ awake(){
 			printf "(-‿-)\r"
 			sleep .3
 			kill $(pgrep caffeinate)
-			exit 0
+			return 0
 	fi
 }
 
