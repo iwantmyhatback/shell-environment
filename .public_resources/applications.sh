@@ -10,9 +10,11 @@ printf '%s\n' '[INFO] Loading public::applications'
 ### --- NVM --------------------------------------------------------------------------------###
 ###-----------------------------------------------------------------------------------------###
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+if command -v nvm >/dev/null 2>&1; then
+	export NVM_DIR="$HOME/.nvm"
+	[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
+	[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+fi
 
 ###-----------------------------------------------------------------------------------------###
 ### --- ZSH-COMPLETIONS --------------------------------------------------------------------###
@@ -43,43 +45,45 @@ fi
 ### --- JENV -------------------------------------------------------------------------------###
 ###-----------------------------------------------------------------------------------------###
 
-# Addes this export up top
-# eval export PATH="/Users/administrator/.jenv/shims:${PATH}"
-export JENV_SHELL=zsh
-export JENV_LOADED=1
-unset JAVA_HOME
-unset JDK_HOME
-# shellcheck disable=SC1091
-. "$(brew --prefix)/Cellar/jenv/0.5.6/libexec/libexec/../completions/jenv.zsh"
-# shellcheck disable=SC2218
-jenv rehash 2>/dev/null
-# shellcheck disable=SC2218
-jenv refresh-plugins
-jenv() {
-	# shellcheck disable=SC3044
-	type typeset > /dev/null 2>&1 && typeset command
-	input="${1}"
-	if [ "$#" -gt 0 ]; then
-		shift
-	fi
+if command -v jenv >/dev/null 2>&1; then
+	export JENV_SHELL=zsh
+	export JENV_LOADED=1
+	unset JAVA_HOME
+	unset JDK_HOME
+	# shellcheck disable=SC1091
+	. "$(brew --prefix)/Cellar/jenv/0.5.6/libexec/libexec/../completions/jenv.zsh"
+	# shellcheck disable=SC2218
+	jenv rehash 2>/dev/null
+	# shellcheck disable=SC2218
+	jenv refresh-plugins
+	jenv() {
+		# shellcheck disable=SC3044
+		type typeset > /dev/null 2>&1 && typeset command
+		input="${1}"
+		if [ "$#" -gt 0 ]; then
+			shift
+		fi
 
-	case "${input}" in
-	enable-plugin|rehash|shell|shell-options)
-		# shellcheck disable=SC2046
-		eval $(jenv "sh-${input}" "$@");;
-	*)
-		command jenv "${input}" "$@";;
-	esac
-}
+		case "${input}" in
+		enable-plugin|rehash|shell|shell-options)
+			# shellcheck disable=SC2046
+			eval $(jenv "sh-${input}" "$@");;
+		*)
+			command jenv "${input}" "$@";;
+		esac
+	}
+fi
 
 
 ###-----------------------------------------------------------------------------------------###
-###--- <NEW SECTION> -----------------------------------------------------------------------###
+###--- PYENV -------------------------------------------------------------------------------###
 ###-----------------------------------------------------------------------------------------###
 
-export PYENV_ROOT="$HOME/.pyenv"
-[ -d "${PYENV_ROOT}/bin" ] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+if command -v pyenv >/dev/null 2>&1; then
+	export PYENV_ROOT="$HOME/.pyenv"
+	[ -d "${PYENV_ROOT}/bin" ] && export PATH="$PYENV_ROOT/bin:$PATH"
+	eval "$(pyenv init -)"
+fi
 
 ###-----------------------------------------------------------------------------------------###
 ###--- <NEW SECTION> -----------------------------------------------------------------------###
