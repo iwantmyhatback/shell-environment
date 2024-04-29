@@ -105,16 +105,16 @@ command -v /usr/libexec/java_home >/dev/null 2>&1 && alias java_home="/usr/libex
 
 if is_bash;then
 	alias src='source ${HOME}/.bashrc'
-	command -v vim >/dev/null 2>&1 && alias eProfile='vim ${HOME}/.bashrc'
-	command -v code >/dev/null 2>&1 && alias eProfileVs='code ${HOME}/.bashrc'
+	command -v vim >/dev/null 2>&1 && alias eProfile='vim ${HOME}/.shell-environment'
+	command -v code >/dev/null 2>&1 && alias eProfileVs='code ${HOME}/.bashrc ${HOME}/.shell-environment'
 elif is_zsh;then
 	alias src='source ${HOME}/.zshrc'
-	command -v vim >/dev/null 2>&1 && alias eProfile='vim ${HOME}/.zshrc'
-	command -v code >/dev/null 2>&1 && alias eProfileVs='code ${HOME}/.zshrc'
+	command -v vim >/dev/null 2>&1 && alias eProfile='vim ${HOME}/.shell-environment'
+	command -v code >/dev/null 2>&1 && alias eProfileVs='code ${HOME}/.zshrc ${HOME}/.shell-environment'
 elif is_sh;then
 	alias src='source ${HOME}/.profile'
-	command -v vim >/dev/null 2>&1 && alias eProfile='vim ${HOME}/.profile'
-	command -v code >/dev/null 2>&1 && alias eProfileVs='code ${HOME}/.profile'
+	command -v vim >/dev/null 2>&1 && alias eProfile='vim ${HOME}/.shell-environment'
+	command -v code >/dev/null 2>&1 && alias eProfileVs='code ${HOME}/.profile ${HOME}/.shell-environment'
 else
 	printf '[ERROR] Unknown shell type!\n'
 	exit 1
