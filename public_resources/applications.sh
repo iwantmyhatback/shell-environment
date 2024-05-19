@@ -55,7 +55,7 @@ if command -v jenv >/dev/null 2>&1; then
 	unset JAVA_HOME
 	unset JDK_HOME
 	# shellcheck disable=SC1091
-	. "$(brew --prefix)/Cellar/jenv/*/libexec/libexec/../completions/jenv.zsh"
+	. "$(brew --prefix)/Cellar/jenv/*/libexec/completions/jenv.zsh"
 	# shellcheck disable=SC2218
 	jenv rehash 2>/dev/null
 	# shellcheck disable=SC2218
