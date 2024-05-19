@@ -54,8 +54,8 @@ if command -v jenv >/dev/null 2>&1; then
 	export JENV_LOADED=1
 	unset JAVA_HOME
 	unset JDK_HOME
-	# shellcheck disable=SC1091
-	. "$(brew --prefix)/Cellar/jenv/*/libexec/completions/jenv.zsh"
+	# shellcheck disable=SC1090
+	. "$(brew --prefix)"/Cellar/jenv/*/libexec/completions/jenv.zsh
 	# shellcheck disable=SC2218
 	jenv rehash 2>/dev/null
 	# shellcheck disable=SC2218
