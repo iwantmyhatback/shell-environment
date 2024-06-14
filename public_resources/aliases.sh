@@ -116,8 +116,7 @@ elif is_sh;then
 	command -v vim >/dev/null 2>&1 && alias eProfile='vim ${HOME}/.shell-environment'
 	command -v code >/dev/null 2>&1 && alias eProfileVs='code ${HOME}/.profile ${HOME}/.shell-environment'
 else
-	printf '[ERROR] Unknown shell type!\n'
-	exit 1
+	printf '[ERROR] Unknown shell type! cannot set eProfile aliases\n'
 fi
 
 

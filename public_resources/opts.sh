@@ -32,8 +32,7 @@ elif is_sh;then
 	# /bin/sh opts here
 	:
 else
-	printf '[ERROR] Unknown shell type!\n'
-	exit 1
+	printf '[ERROR] Unknown shell type! cannot set opts\n'
 fi
 
 
