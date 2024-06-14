@@ -11,9 +11,11 @@ printf '%s\n' '[INFO] Loading public::applications'
 ###-----------------------------------------------------------------------------------------###
 
 if command -v nvm >/dev/null 2>&1; then
-	export NVM_DIR="$HOME/.nvm"
-	[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
-	[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+	if is_bash; then
+		export NVM_DIR="$HOME/.nvm"
+		[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
+		[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+	fi
 fi
 
 
@@ -23,7 +25,7 @@ fi
 ###-----------------------------------------------------------------------------------------###
 
 if command -v brew > /dev/null 2>&1; then
-	if [ "${SHELL}" = '/bin/zsh' ];then
+	if is_zsh;then
 		FPATH="$(brew --prefix)/share/zsh-completions:$FPATH"
 		autoload -Uz compinit
 		compinit
@@ -37,7 +39,7 @@ fi
 ###-----------------------------------------------------------------------------------------###
 
 if command -v brew >/dev/null 2>&1; then
-	if [ "${SHELL}" = '/bin/zsh' ];then
+	if is_zsh;then
 		# shellcheck disable=SC1091
 		[ -s "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && . "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 	fi
