@@ -247,7 +247,6 @@ pbexec(){
 	PASTE=$(printf '%s\n' "$(pbpaste)" | awk '{$1=$1};1')
 	# Escape special shell characters
 	PASTE=$(printf '%s' "${PASTE}" | sed "s/[\\&\`\"'$\|!;*?(){}[\]<>]/\\&/g")
-	# echo "${PASTE}"
 	if [ "${PASTE}" = 'pbexec' ]; then
 		printf '[INVALID ARG] Circular call! content == "pbexec"\n' 
 		return 1
