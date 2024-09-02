@@ -51,9 +51,9 @@ list_java(){
 ###-----------------------------------------------------------------------------------------###
 
 refresh_java(){
-	for jdk in "$(brew --prefix)/opt/openjdk"*;do 
-		dest_jdk="$(basename ${jdk} | sed 's/\@/\-/g').jdk"
-		sudo ln -sfn "${jdk}/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/${dest_jdk}";
+	for JDK in "$(brew --prefix)/opt/openjdk"*;do 
+		DEST_JDK="$(basename ${JDK} | sed 's/\@/\-/g').jdk"
+		sudo ln -sfn "${JDK}/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/${DEST_JDK}";
 	done 
 }
 
@@ -237,9 +237,27 @@ awake(){
 
 
 ###-----------------------------------------------------------------------------------------###
-###--- <NEW SECTION> -----------------------------------------------------------------------###
+###--- PBEXEC ------------------------------------------------------------------------------###
 ###-----------------------------------------------------------------------------------------###
 
+
+# Execute whatever is in the paseboard
+pbexec(){
+	# Add trailing newline & Trim leading/trailing whitespace
+	PASTE=$(printf '%s\n' "$(pbpaste)" | awk '{$1=$1};1')
+	# Escape special shell characters
+	PASTE=$(printf '%s' "${PASTE}" | sed "s/[\\&\`\"'$\|!;*?(){}[\]<>]/\\&/g")
+	# echo "${PASTE}"
+	if [ "${PASTE}" = 'pbexec' ]; then
+		printf '[INVALID ARG] Circular call! content == "pbexec"\n' 
+		return 1
+	fi
+	while IFS= read -r LINE; do
+		eval ${LINE}; 
+	done  << EOF
+${PASTE}
+EOF
+}
 
 
 
