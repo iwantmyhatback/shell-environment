@@ -20,7 +20,8 @@ remote_copy(){
 	# -E copy extended attributes.  (this is important for .dmg files that have the com.apple.macl bit)
 	# -—progress use a progress meter
 	# -—exclude=<BRE PATTERN>
-	rsync -rltpchE "${1}" "${2}"
+	# rsync -rltpchE "${1}" "${2}"
+	rsync -rltpch "${1}" "${2}"
 }
 
 
@@ -265,7 +266,6 @@ EOF
 ###-----------------------------------------------------------------------------------------###
 
 
-# Execute whatever is in the paseboard
 encrypt(){
 	IN_FILE="${1}"
 	OUT_FILE="${IN_FILE}.enc"
